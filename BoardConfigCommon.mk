@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-PLATFORM_PATH := device/cyanogen/msm8916-common
+PLATFORM_PATH := device/oppo/msm8916-common
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8916
