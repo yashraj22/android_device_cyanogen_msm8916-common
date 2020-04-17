@@ -18,7 +18,7 @@
 PLATFORM_PATH := device/cyanogen/msm8916-common
 
 # inherit from OPPO common
-include device/oppo/common/BoardConfigCommon.mk
+-include device/oppo/common/BoardConfigCommon.mk
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8916
