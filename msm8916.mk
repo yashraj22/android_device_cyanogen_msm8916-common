@@ -55,6 +55,10 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl \
     android.hardware.bluetooth@1.0-service
 
+# Camera
+PRODUCT_PACKAGES += \
+    libshim_camera
+
 # Display
 PRODUCT_PACKAGES += \
     gralloc.msm8916 \
