@@ -39,7 +39,6 @@ on early-init
 
 on init
     symlink /sdcard /storage/sdcard0
-    export LD_PRELOAD "libshim_atomic.so"
 
 on fs
     wait /dev/block/platform/soc.0/${ro.boot.bootdevice}
