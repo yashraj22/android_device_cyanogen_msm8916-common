@@ -23,6 +23,19 @@
 #include <hardware/power.h>
 #include <hardware/hardware.h>
 
+//various funcs we'll need to call, in their mangled form
+
+//android::String16::String16(char const*)
+extern void _ZN7android8String16C1EPKc(void **str16P, const char *str);
+
+//android::String16::~String16()
+extern void _ZN7android8String16D1Ev(void **str16P);
+
+//android::SensorManager::SensorManager(android::String16 const&)
+extern void _ZN7android13SensorManagerC1ERKNS_8String16E(void *sensorMgr, void **str16P);
+
+//code exports we provide
+
 //android::SensorManager::SensorManager(void)
 void _ZN7android13SensorManagerC1Ev(void *sensorMgr);
 
@@ -42,5 +55,5 @@ void _ZN7android13SensorManagerC1Ev(void *sensorMgr)
     _ZN7android8String16C1EPKc(&string, "camera.msm8916");
     _ZN7android13SensorManagerC1ERKNS_8String16E(sensorMgr, &string);
     _ZN7android8String16D1Ev(&string);
-
 }
+

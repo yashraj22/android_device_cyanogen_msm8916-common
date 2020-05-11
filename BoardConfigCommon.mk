@@ -23,6 +23,8 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8916
 
 TARGET_NO_BOOTLOADER := true
 
+ENABLE_CPUSETS := true
+
 # Architecture
 ifneq ($(FORCE_32_BIT),true)
 TARGET_ARCH := arm64
@@ -85,6 +87,9 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 TARGET_USES_MKE2FS := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_HAS_LARGE_FILESYSTEM := true
 
 # FM
 AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
@@ -96,11 +101,15 @@ TARGET_INIT_VENDOR_LIB := libinit_msm8916
 TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8916
 
 # Kernel
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk ramoops.mem_address=0x9ff00000 ramoops.mem_size=0x400000 ramoops.record_size=0x40000 androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
-BOARD_RAMDISK_OFFSET := 0x02000000
+BOARD_KERNEL_OFFSET := 0x00008000
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+BOARD_RAMDISK_OFFSET := 0x01000000
+BOARD_FLASH_BLOCK_SIZE := 131072
+BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 
 TARGET_KERNEL_SOURCE := kernel/oppo/A37f
 
@@ -147,7 +156,7 @@ TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib64/libizat_core.so|libshims_get_process_name.so \
     /system/vendor/lib/libflp.so|libshims_flp.so \
     /system/vendor/lib/libizat_core.so|libshims_get_process_name.so \
-    /system/vendor/lib/libmmcamera2_stats_modules.so |libshim_sensormanager.so
+    /system/vendor/lib/libmmcamera2_stats_modules.so|libshim_sensormanager.so
 
 # Wi-Fi
 BOARD_HAS_QCOM_WLAN := true

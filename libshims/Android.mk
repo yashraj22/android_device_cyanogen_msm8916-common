@@ -38,6 +38,6 @@ include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := SensorManager.c
 LOCAL_SHARED_LIBRARIES := liblog libcutils libgui libbinder libutils
-LOCAL_MODULE := libshims_sensormanager
+LOCAL_MODULE := libshim_sensormanager
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
